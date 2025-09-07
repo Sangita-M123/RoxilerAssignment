@@ -23,56 +23,23 @@ export default function App() {
       <Navbar />
       <main className="container mx-auto p-4">
         <Routes>
-          {/* Public Routes */}
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
 
-          {/* Store Routes */}
-          <Route
-            path="/stores"
-            element={<ProtectedRoute><StoresList /></ProtectedRoute>}
-          />
-          <Route
-            path="/stores/:id"
-            element={<ProtectedRoute><StoreDetail /></ProtectedRoute>}
-          />
+          <Route path="/stores" element={<ProtectedRoute><StoresList /></ProtectedRoute>} />
+          <Route path="/stores/:id" element={<ProtectedRoute><StoreDetail /></ProtectedRoute>} />
 
-          {/* Admin Routes */}
-          <Route
-            path="/admin"
-            element={<ProtectedRoute role="admin"><AdminDashboard /></ProtectedRoute>}
-          />
-          <Route
-            path="/admin/users"
-            element={<ProtectedRoute role="admin"><AdminUsers /></ProtectedRoute>}
-          />
-          <Route
-            path="/admin/stores"
-            element={<ProtectedRoute role="admin"><AdminStores /></ProtectedRoute>}
-          />
+          <Route path="/admin" element={<ProtectedRoute role="admin"><AdminDashboard /></ProtectedRoute>} />
+          <Route path="/admin/users" element={<ProtectedRoute role="admin"><AdminUsers /></ProtectedRoute>} />
+          <Route path="/admin/stores" element={<ProtectedRoute role="admin"><AdminStores /></ProtectedRoute>} />
 
-          {/* Owner Routes */}
-          <Route
-            path="/owner"
-            element={<ProtectedRoute role="owner"><OwnerDashboard /></ProtectedRoute>}
-          />
-          <Route
-            path="/owner/stores/:storeId/raters"
-            element={<ProtectedRoute role="owner"><OwnerRaters /></ProtectedRoute>}
-          />
+          <Route path="/owner" element={<ProtectedRoute role="owner"><OwnerDashboard /></ProtectedRoute>} />
+          <Route path="/owner/stores/:storeId/raters" element={<ProtectedRoute role="owner"><OwnerRaters /></ProtectedRoute>} />
 
-          {/* Profile Routes */}
-          <Route
-            path="/change-password"
-            element={<ProtectedRoute><ChangePassword /></ProtectedRoute>}
-          />
+          <Route path="/change-password" element={<ProtectedRoute><ChangePassword /></ProtectedRoute>} />
 
-          {/* Default Routes */}
-          <Route
-            path="/"
-            element={<Navigate to={user ? "/stores" : "/login"} replace />}
-          />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/" element={<Navigate to={user ? "/stores" : "/login"} replace />} />
+          <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
 
           <Route path="*" element={<div className="p-8">404 - Not Found</div>} />
         </Routes>
